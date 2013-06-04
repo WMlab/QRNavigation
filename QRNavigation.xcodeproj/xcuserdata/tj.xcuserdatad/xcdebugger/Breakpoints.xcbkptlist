@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NavigationViewController.m"
-         timestampString = "392043779.46467"
+         timestampString = "392048261.900904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
+         startingLineNumber = "186"
+         endingLineNumber = "186"
          landmarkName = "@implementation NavigationViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NavigationViewController.m"
-         timestampString = "392043779.46467"
+         timestampString = "392048261.900904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "135"
-         endingLineNumber = "135"
+         startingLineNumber = "137"
+         endingLineNumber = "137"
          landmarkName = "-scanFromNum:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NavigationViewController.m"
-         timestampString = "392034737.542517"
+         timestampString = "392048261.900904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
          landmarkName = "-startScanQRcode:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NavigationViewController.m"
-         timestampString = "392043779.46467"
+         timestampString = "392048261.900904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "124"
-         endingLineNumber = "124"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "-getScanResult:withTag:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NavigationViewController.m"
-         timestampString = "392034729.154264"
+         timestampString = "392048261.900904"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

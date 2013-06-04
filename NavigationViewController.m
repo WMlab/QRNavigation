@@ -34,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     profCellisOpen = NO;
+    roomNumTextField.delegate = self;
+    
     NSURL *profList = [[NSBundle mainBundle] URLForResource:@"professor" withExtension:@"plist"];
     profArray = [NSArray arrayWithContentsOfURL:profList];
     [topScanBtn setHidden:YES];
