@@ -1,0 +1,263 @@
+//
+//  NavAlgorithm.m
+//  QRNavigation
+//
+//  Created by 史 丹青 on 13-6-3.
+//  Copyright (c) 2013年 tongji. All rights reserved.
+//
+
+#import "NavAlgorithm.h"
+
+@implementation NavAlgorithm
+
++(NSMutableArray*) dijkstraWithStart:(int)start End:(int)end{
+    int n=38,away=10000,near=1;
+    NSMutableArray* path = [[NSMutableArray alloc] init];
+    
+    //以下为邻接矩阵。。。
+    int C[38][38]={
+        //1
+        {away,near,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,near,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //2
+        {near,away,near,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //3
+        {away,near,away,near,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //4
+        {away,away,near,away,near,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //5
+        {away,away,away,near,away,near,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //6
+        {away,away,away,away,near,away,near,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //7
+        {away,away,away,away,away,near,away,near,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //8
+        {away,away,away,away,away,away,near,away,near,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,near},
+        //9
+        {away,away,away,away,away,away,away,near,away,near,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //10
+        {away,away,away,away,away,away,away,away,near,away,
+            near,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,near,away},
+        //11
+        {away,away,away,away,away,away,away,away,away,near,
+            away,near,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //12
+        {away,away,away,away,away,away,away,away,away,away,
+            near,away,near,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //13
+        {away,away,away,away,away,away,away,away,away,away,
+            away,near,away,near,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //14
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,near,away,near,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //15
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,near,away,near,away,away,away,near,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //16
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,near,away,near,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //17
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,near,away,near,near,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //18
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,near,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //19
+        {near,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,near,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //20
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,near,away,away,away,away,away,
+            near,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //21
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,near,
+            away,near,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //22
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            near,away,near,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //23
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,near,away,near,near,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //24
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,near,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //25
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,near,away,away,near,away,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //26
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,near,away,near,away,away,away,
+            away,away,away,away,away,away,away,away},
+        //27
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,near,away,near,away,away,
+            away,away,away,away,away,away,away,away},
+        //28
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,near,away,near,away,
+            away,near,away,away,away,away,away,away},
+        //29
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,near,away,near,
+            away,away,away,away,away,away,away,away},
+        //30
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,near,away,
+            near,away,away,away,away,away,away,away},
+        //31
+        {away,away,away,away,away,away,away,away,away,away,
+            away,near,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,near,
+            away,away,away,away,away,away,away,away},
+        //32
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,near,away,away,
+            away,away,near,away,away,away,away,away},
+        //33
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,near,away,near,near,away,away,away},
+        //34
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,near,away,away,away,away,away},
+        //35
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,near,away,away,near,away,away},
+        //36
+        {away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,near,away,near,away},
+        //37
+        {away,away,away,away,away,away,away,away,away,near,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,near,away,away},
+        //38
+        {away,away,away,away,away,away,away,near,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away,away,away,
+            away,away,away,away,away,away,away,away}
+    };
+    
+    int D[n];
+    int P[n],S[n];
+    int i,j,k,start1,end1,pre;
+    int min,max=away,inf=1200;
+    start1=start-1;
+    end1=end-1;
+    for(i=0;i<n;i++)
+    {
+        D[i]=C[start1][i];
+        if(D[i]!=max)
+            P[i]=start;
+        else
+            P[i]=0;
+    }
+    for(i=0;i<n;i++)
+        S[i]=0;
+    S[start1]=1;D[start1]=0;
+    for(i=0;i<n-1;i++)
+    {
+        min=inf;
+        for(j=0;j<n;j++)
+        {
+            if((!S[j])&&(D[j]<min))
+            {
+                min=D[j];
+                k=j;
+            }
+        }
+        S[k]=1;
+        for(j=0;j<n;j++)
+        {
+            if((!S[j])&&(D[j]>D[k]+C[k][j]))
+            {
+                D[j]=D[k]+C[k][j];
+                P[j]=k+1;
+            }
+        }
+        if (k==end1) {
+            break;
+        }
+    }
+    pre=P[end1];
+    [path addObject:[NSNumber numberWithInt:end]];
+    while(pre!=0)
+    {
+        [path addObject:[NSNumber numberWithInt:pre]];
+        pre=P[pre-1];
+    }
+    return path;
+}
+
+
+@end

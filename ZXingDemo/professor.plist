@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>宋春林</string>
+		<key>room</key>
+		<string>711</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>刘富强</string>
+		<key>room</key>
+		<string>710</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>郭爱煌</string>
+		<key>room</key>
+		<string>706</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>胡宗福</string>
+		<key>room</key>
+		<string>704</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>赵晓群</string>
+		<key>room</key>
+		<string>714</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>王平</string>
+		<key>room</key>
+		<string>733</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>薛小平</string>
+		<key>room</key>
+		<string>737</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>徐中伟</string>
+		<key>room</key>
+		<string>712</string>
+	</dict>
+</array>
+</plist>
